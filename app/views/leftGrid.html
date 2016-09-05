@@ -1,0 +1,115 @@
+<script type="text/ng-template" id="nodes_renderer.html">
+  <div ui-tree-handle class="tree-node tree-node-content"  ng-class="{'selected-node': treeSelection.id == node.id && treeSelection.type == node.type}"
+       ng-click="selectNode(node, $event)">
+    <a class="btn btn-success btn-xs" ng-if="node.nodes && node.nodes.length > 0" data-nodrag ng-click="toggle(this)"><span
+      class="glyphicon"
+      ng-class="{
+          'glyphicon-chevron-right': collapsed,
+          'glyphicon-chevron-down': !collapsed
+        }"></span></a>
+    {{node.title}}
+    <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)"><span
+      class="glyphicon glyphicon-remove"></span></a>
+    <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span
+      class="glyphicon glyphicon-plus"></span></a>
+    <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="questionsAdd(node)" style="margin-right: 8px;"><span
+      class="glyphicon glyphicon-question-sign"></span></a>
+  </div>
+  <ol ui-tree-nodes=""  data-nodrop-enabled ng-model="node.nodes" ng-class="{hidden: collapsed}">
+    <li ng-repeat="node in node.nodes" ng-click="alert('Select '+node.title)" ui-tree-node ng-include="'nodes_renderer.html'">
+    </li>
+  </ol>
+</script>
+<div class="ng-scope ng-binding block leftBlock" ng-controller="LeftGridCtrl" >
+
+  <div class="col-xs-12 col-md-12 table-header" style="background: grey;
+    padding: 1%;
+    height: 40px;
+    font-weight: bold;
+    color: #fff;">
+    <div class="pull-left table-header-name" >
+      Список тем и вопросов
+    </div>
+  </div>
+
+  <div class="row ">
+    <div class="col-lg-6">
+      <h3>Topics
+      </h3>
+      <div class="row headerGrid">
+        <div class="col-lg-6">
+          <p>
+            Search: <input ng-model="query" ng-change="findNodes()"/>
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <a class="pull-right btn btn-default btn-xs" ng-click="add()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="angular-ui-tree-handle" ng-show="newAddShow">
+        <input class="add" ng-model="example" placeholder="New name" >
+
+        <a class="pull-right btn btn-warning btn-xs" ng-click="revertAdd()" style="margin-right: 8px;"><span
+          class="glyphicon glyphicon-trash"></span></a>
+        <a class="pull-right btn btn-success btn-xs" ng-click="saveAdd()"><span
+          class="glyphicon glyphicon-save"></span></a>
+      </div>
+      <!-- Nested node template -->
+      <div ui-tree="options" data-drag-enabled="false" data-nodrop-enabled="false" ng-show="data.length>0" >
+        <ol ui-tree-nodes="" ng-model="data">
+          <li ng-repeat="node in data | filter : query" ui-tree-node="" ng-include="'nodes_renderer.html'"></li>
+        </ol>
+      </div>
+      <div ng-show="data==null || data=='' || noTableData"><h4>Список пуст</h4></div>
+
+    </div>
+
+    <div class="col-lg-6">
+      <h3>Привязанные вопросы</h3>
+      <div class="row headerGrid">
+        <div class="col-lg-6">
+          <p>
+            Table issues
+          </p>
+        </div>
+      </div>
+      <div ng-if="!noTableDataQ">
+        <table  class="table table-bordered table-striped table-condensed"
+                ng-table="tableParams" show-filter="true">
+          <tr ng-repeat="row in questionsList track by row.id"
+              ng-class="{tableItemSelected: (row.id === gridSelection.id)}">
+            <td data-title="'Вопрос'" filter="{title: 'text'}" sortable="'title'">
+              {{row.title}}
+            </td>
+            <td data-title="'Уровень сложности'" filter="{level:'number'}" sortable="'level'" >
+              {{row.level}}
+            </td>
+            <td data-title="'Действия'" class="center-block">
+              <div class="btnGroup">
+                <button class="btn btn-xs btn-primary glyphicon glyphicon-pencil"></button>
+                <button class="btn btn-xs btn-danger glyphicon glyphicon-remove"></button>
+              </div>
+
+            </td>
+
+
+          </tr>
+        </table>
+      </div>
+
+      <h2 ng-if="noTableDataQ"
+          class="text-center">
+        Вопросов по данной теме нет
+      </h2>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+</div>

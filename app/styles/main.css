@@ -1,0 +1,105 @@
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+    padding: 1%;
+}
+
+input {
+  color: #7c9eb2;
+}
+ul{
+  display: inline;
+  height: 0;
+}
+li {
+  list-style-type: none; /* Убираем маркеры */
+}
+
+.hero-unit {
+    margin: 50px auto 0 auto;
+    width: 300px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 60px;
+}
+
+.hero-unit h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+.block .leftBlock{
+  height: 100%;
+  border-right:1px solid rgba(133, 129, 132, 0.38);
+}
+
+/**************ui-tree********************/
+.btn {
+  margin-right: 8px;
+}
+
+.angular-ui-tree-handle {
+  background: #f8faff;
+  border: 1px solid #dae2ea;
+  color: #7c9eb2;
+  padding: 10px 10px;
+}
+
+.angular-ui-tree-handle:hover {
+  color: #fff;
+  background: #bfbfbf;
+  border-color: #dce2e8;
+}
+
+.angular-ui-tree-placeholder {
+  background: #f0f9ff;
+  border: 2px dashed #bed2db;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+.group-title {
+  background-color: #687074 !important;
+  color: #FFF !important;
+}
+
+.tree-node {
+  margin: 0;
+}
+
+.node-text {
+  padding: 0;
+  cursor: pointer;
+}
+
+.selected-node {
+  color: #fff;
+   font-weight: bold;
+   background: #bfbfbf;
+}
+
+
+/****************************/
+.btnGroup{
+  margin-left: 25%;
+}
+.headerGrid{
+  height: 40px;
+  padding: 1% 0% 1% 1.2%;
+  background: #5cb85c;
+  Color: #fff;
+  font-weight: bold;
+  margin-left: 0.03%;
+  margin-bottom: 1%;
+  width: 100%;
+  border: 1px solid #dae2ea;
+  box-shadow: 0 1px 7px rgba(0,0,0,0.5);
+}
+
+
